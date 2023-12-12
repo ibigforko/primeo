@@ -21,7 +21,7 @@ class StoreRequest extends ApiFormRequest
                         $query->where('active', 1)
                             ->where('created_at', '>', \Carbon\Carbon::now()->subHours(4)->toDateTimeString());
                     }),
-                User::table('exists:{t}, email')
+                User::table('exists:{t},email')
             ]
         ];
     }
