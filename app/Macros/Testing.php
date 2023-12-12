@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Testing\TestResponse;
-use App\Core\Pagination;
 use App\Core\Response;
 
 
@@ -22,7 +21,7 @@ TestResponse::macro('assertJsonPayload', function(Array $structure) {
 });
 
 TestResponse::macro('assertJsonDataCount', function(Int $count) {
-    $this->assertJsonCount($count, Response::PAYLOAD.'.'.Pagination::DATA);
+    $this->assertJsonCount($count, Response::PAYLOAD.'.data');
 });
 
 TestResponse::macro('assertJsonWithErrors', function(Array $structure) {
@@ -38,14 +37,27 @@ TestResponse::macro('assertJsonWithPagination', function(Array $structure) {
         Response::STATUS_CODE,
         Response::SUCCESS,
         Response::PAYLOAD => [
-            Pagination::CURRENT_PAGE,
-            Pagination::TOTAL,
-            Pagination::DATA => [
+            "current_page",
+            "data" => [
                 "*" => $structure
             ],
-            Pagination::PER_PAGE,
-            Pagination::NEXT_PAGE_URL,
-            Pagination::PREV_PAGE_URL
+            "first_page_url",
+            "from",
+            "last_page",
+            "last_page_url",
+            "links" => [
+                "*" => [
+                    "url",
+                    "label",
+                    "active"
+                ]
+            ],
+            "next_page_url",
+            "path",
+            "per_page",
+            "prev_page_url",
+            "to",
+            "total"
         ]
     ]);
 });

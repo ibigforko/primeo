@@ -55,7 +55,12 @@ return new class extends Migration
             $table->index('created_at');
             $table->index('updated_at');
             $table->index('deleted_at');
-        });      
+        }); 
+        
+        User::factory()
+            ->create([
+                'email' => 'test@test.com'
+            ]);
     }
 
     /**

@@ -1,0 +1,532 @@
+name: Users
+description: Users endpoints
+endpoints:
+# Users - Index
+- httpMethods: ["GET"]
+  uri: api/v1/users
+  metadata:
+    authenticated: false
+  urlParameters: [
+    {
+      name: 'page[number]',
+      required: false,
+      type: integer
+    },
+    {
+      name: 'page[size]',
+      required: false,
+      type: integer
+    },
+    {
+      name: 'filter[first_name]',
+      required: false,
+      type: string
+    },
+    {
+      name: 'filter[last_name]',
+      required: false,
+      type: string
+    },
+    {
+      name: 'filter[email]',
+      required: false,
+      type: string
+    },
+  ]
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "payload": {
+          "current_page": 1,
+          "data": [
+            {
+              "id": 1,
+              "role": "admin",
+              "language": "pl",
+              "first_name": "Casandra",
+              "last_name": "Miller",
+              "email": "test@test.com",
+              "email_verified_at": null,
+              "phone": "+1-754-248-4516",
+              "average_salary": "4206.99",
+              "position": "front-end",
+              "address": "666 Abagail Circles",
+              "country": "Western Sahara",
+              "postal_code": "17050",
+              "city": "Gretchenville",
+              "house_number": "949",
+              "apartment_number": "9449",
+              "is_mailing_address_different": false,
+              "mailing_address": null,
+              "mailing_country": null,
+              "mailing_postal_code": null,
+              "mailing_city": null,
+              "mailing_house_number": null,
+              "mailing_apartment_number": null,
+              "is_active": true,
+              "created_at": "2023-12-12T15:16:09.000000Z",
+              "updated_at": "2023-12-12T18:15:23.000000Z",
+              "deleted_at": null
+            }
+          ],
+          "first_page_url": "http://localhost/api/v1/users?page%5Bnumber%5D=1",
+          "from": 1,
+          "last_page": 1,
+          "last_page_url": "http://localhost/api/v1/users?page%5Bnumber%5D=1",
+          "links": [
+            {
+              "url": null,
+              "label": "&laquo; Previous",
+              "active": false
+            },
+            {
+              "url": "http://localhost/api/v1/users?page%5Bnumber%5D=1",
+              "label": "1",
+              "active": true
+            },
+            {
+              "url": null,
+              "label": "Next &raquo;",
+              "active": false
+            }
+          ],
+          "next_page_url": null,
+          "path": "http://localhost/api/v1/users",
+          "per_page": 30,
+          "prev_page_url": null,
+          "to": 2,
+          "total": 2
+        }
+      }'
+# Users - Show
+- httpMethods: ["GET"]
+  uri: api/v1/users/{user_id}
+  metadata:
+    authenticated: true
+  headers:
+    Bearer Token: String
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "payload": {
+          "id": 2,
+          "role": "user",
+          "language": "en",
+          "first_name": "praesentium est excepturi",
+          "last_name": "in neque molestiae",
+          "email": "lera.donnelly@example.org",
+          "email_verified_at": "2023-12-12T18:07:55.000000Z",
+          "phone": "949-672-6726",
+          "average_salary": "12178.59",
+          "position": "back-end",
+          "address": "27317 Toy Summit",
+          "country": "Solomon Islands",
+          "postal_code": "71175",
+          "city": "South Mustafachester",
+          "house_number": "783",
+          "apartment_number": "78470",
+          "is_mailing_address_different": false,
+          "mailing_address": null,
+          "mailing_country": null,
+          "mailing_postal_code": null,
+          "mailing_city": null,
+          "mailing_house_number": null,
+          "mailing_apartment_number": null,
+          "is_active": true,
+          "created_at": "2023-12-12T18:07:55.000000Z",
+          "updated_at": "2023-12-12T18:07:55.000000Z",
+          "deleted_at": null
+        }
+      }'
+# Users - Store
+- httpMethods: ["PUT"]
+  uri: api/v1/users
+  metadata:
+    authenticated: true
+  headers:
+    Bearer Token: String
+  urlParameters: [
+    {
+      name: language,
+      required: true,
+      description: "### Available:\n
+        * en\n
+        * pl\n
+        \n",
+      type: string
+    },
+    {
+      name: first_name,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: last_name,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: email,
+      required: true,
+      type: string
+    },
+    {
+      name: phone,
+      required: false,
+      type: string
+    },
+    {
+      name: average_salary,
+      required: false,
+      type: string
+    },
+    {
+      name: position,
+      required: true,
+      description: "### Available:\n
+        * front-end\n
+        * back-end\n
+        * pm\n
+        * designer\n
+        * tester\n
+        \n",
+      type: string
+    },
+    {
+      name: address,
+      required: true,
+      description: "Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: country,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: postal_code,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: city,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: house_number,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: apartment_number,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: is_mailing_address_different,
+      required: false,
+      type: boolean
+    },
+    {
+      name: mailing_address,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: mailing_country,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_postal_code,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_city,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_house_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_apartment_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: password,
+      required: true,
+      description: "Minimum 6 characters",
+      type: string
+    },
+    {
+      name: password_confirmation,
+      required: true,
+      description: "Minimum 6 characters and must match the password.",
+      type: string
+    }
+  ]
+  responses:
+  - status: 201
+    content: '{
+        "status_code": 201,
+        "success": true,
+        "payload": {
+          "id": 2,
+          "role": "user",
+          "language": "en",
+          "first_name": "praesentium est excepturi",
+          "last_name": "in neque molestiae",
+          "email": "lera.donnelly@example.org",
+          "email_verified_at": "2023-12-12T18:07:55.000000Z",
+          "phone": "949-672-6726",
+          "average_salary": "12178.59",
+          "position": "back-end",
+          "address": "27317 Toy Summit",
+          "country": "Solomon Islands",
+          "postal_code": "71175",
+          "city": "South Mustafachester",
+          "house_number": "783",
+          "apartment_number": "78470",
+          "is_mailing_address_different": false,
+          "mailing_address": null,
+          "mailing_country": null,
+          "mailing_postal_code": null,
+          "mailing_city": null,
+          "mailing_house_number": null,
+          "mailing_apartment_number": null,
+          "is_active": true,
+          "created_at": "2023-12-12T18:07:55.000000Z",
+          "updated_at": "2023-12-12T18:07:55.000000Z",
+          "deleted_at": null
+        }
+      }'
+# Users - Update
+- httpMethods: ["POST"]
+  uri: api/v1/users/{user_id}
+  metadata:
+    authenticated: true
+  headers:
+    Bearer Token: String
+  urlParameters: [
+    {
+      name: language,
+      required: false,
+      description: "### Available:\n
+        * en\n
+        * pl\n
+        \n",
+      type: string
+    },
+    {
+      name: first_name,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: last_name,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: email,
+      required: false,
+      type: string
+    },
+    {
+      name: phone,
+      required: false,
+      type: string
+    },
+    {
+      name: average_salary,
+      required: false,
+      type: string
+    },
+    {
+      name: position,
+      required: false,
+      description: "### Available:\n
+        * front-end\n
+        * back-end\n
+        * pm\n
+        * designer\n
+        * tester\n
+        \n",
+      type: string
+    },
+    {
+      name: address,
+      required: false,
+      description: "Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: country,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: postal_code,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: city,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: house_number,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: apartment_number,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: is_mailing_address_different,
+      required: false,
+      type: boolean
+    },
+    {
+      name: mailing_address,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: mailing_country,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_postal_code,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_city,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_house_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_apartment_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: password,
+      required: false,
+      description: "Minimum 6 characters",
+      type: string
+    },
+    {
+      name: password_confirmation,
+      required: false,
+      description: "Minimum 6 characters and must match the password.",
+      type: string
+    }
+  ]
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "payload": {
+          "id": 2,
+          "role": "user",
+          "language": "en",
+          "first_name": "praesentium est excepturi",
+          "last_name": "in neque molestiae",
+          "email": "lera.donnelly@example.org",
+          "email_verified_at": "2023-12-12T18:07:55.000000Z",
+          "phone": "949-672-6726",
+          "average_salary": "12178.59",
+          "position": "back-end",
+          "address": "27317 Toy Summit",
+          "country": "Solomon Islands",
+          "postal_code": "71175",
+          "city": "South Mustafachester",
+          "house_number": "783",
+          "apartment_number": "78470",
+          "is_mailing_address_different": false,
+          "mailing_address": null,
+          "mailing_country": null,
+          "mailing_postal_code": null,
+          "mailing_city": null,
+          "mailing_house_number": null,
+          "mailing_apartment_number": null,
+          "is_active": true,
+          "created_at": "2023-12-12T18:07:55.000000Z",
+          "updated_at": "2023-12-12T18:07:55.000000Z",
+          "deleted_at": null
+        }
+      }'
+# Users - Destroy
+- httpMethods: ["DELETE"]
+  uri: api/v1/users/{user_id,user_id,...}
+  metadata:
+    authenticated: true
+  headers:
+    Bearer Token: String
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "message": "Users have been deleted."
+      }'

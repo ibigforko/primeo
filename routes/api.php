@@ -21,9 +21,13 @@ Route::group(['prefix' => 'v1', 'as' => 'v1'], function () {
         // Authorization Logout
         Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy'])->name('.logout');
 
-        Route::put('users', [UsersController::class, 'store'])->name('.users.store');
-        Route::post('users', [UsersController::class, 'update'])->name('.users.update');
-        Route::delete('users', [UsersController::class, 'destroy'])->name('.users.destroy');
+        // Users
+        Route::group(['prefix' => 'users', 'as' => '.users'], function () {
+            Route::get('/{user}', [UsersController::class, 'show'])->name('.show');
+            Route::put('/', [UsersController::class, 'store'])->name('.store');
+            Route::post('/{user}', [UsersController::class, 'update'])->name('.update');
+            Route::delete('/{users}', [UsersController::class, 'destroy'])->name('.destroy');
+        });
     });
 
     // Users

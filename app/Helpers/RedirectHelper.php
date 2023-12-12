@@ -68,16 +68,3 @@ function responseWithPayload($data, $status = 200): JsonResponse
         Response::PAYLOAD => $data
     ], $status);
 }
-
-/**
-*
-* @return JsonResponse
-*/
-function accessDenied(): JsonResponse
-{
-    return response()->json([
-        Response::STATUS_CODE => 403,
-        Response::SUCCESS => false,
-        Response::MESSAGE => __("auth.access_denied", [], Auth::user()?->language ?? User::$default_language)
-    ], 403);
-}
