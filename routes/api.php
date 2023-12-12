@@ -19,7 +19,7 @@ Route::group(['prefix' => 'v1', 'as' => 'v1'], function () {
     // Authenticate
     Route::middleware('auth:sanctum')->group(function () {
         // Authorization Logout
-        Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy'])->name('.logout');
+        Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy'])->name('.auth.logout');
 
         // Users
         Route::group(['prefix' => 'users', 'as' => '.users'], function () {
