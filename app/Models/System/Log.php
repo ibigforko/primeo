@@ -3,12 +3,9 @@
 namespace App\Models\System;
 
 use App\Core\Model;
-use App\Traits\Models\Paginable;
 
 class Log extends Model
-{
-    use Paginable;
-    
+{   
     protected $table = 'system_logs';
 
     public $incrementing = true;
