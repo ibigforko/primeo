@@ -1,0 +1,270 @@
+name: Auth
+description: Authentication endpoints.
+endpoints:
+# Auth Login
+- httpMethods: ["POST"]
+  uri: api/v1/auth/login
+  metadata:
+    authenticated: false
+  headers:
+    Basic Auth: Base64 encoded email and password
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "payload": {
+          "bearerToken": "735|vxcKOKZMYsEUg0jHgG5ZcVCmtCPoAILCnMeNQ6vQ"
+        }
+      }'
+  - status: 401
+    content: '{
+        "status_code": "401",
+        "message": "These credentials do not match our records."
+      }'
+# Auth Logout
+- httpMethods: ["POST"]
+  uri: api/v1/auth/logout
+  metadata:
+    authenticated: true
+  headers:
+    Bearer Token: String
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "message": "Logout successfully."
+      }'
+# Auth Register
+- httpMethods: ["POST"]
+  uri: api/v1/auth/register
+  metadata:
+    authenticated: false
+  urlParameters: [
+    {
+      name: language,
+      required: true,
+      description: "### Available:\n
+        * en\n
+        * pl\n
+        \n",
+      type: string
+    },
+    {
+      name: first_name,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: last_name,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: email,
+      required: true,
+      type: string
+    },
+    {
+      name: phone,
+      required: false,
+      type: string
+    },
+    {
+      name: average_salary,
+      required: false,
+      type: string
+    },
+    {
+      name: position,
+      required: true,
+      description: "### Available:\n
+        * front-end\n
+        * back-end\n
+        * pm\n
+        * designer\n
+        * tester\n
+        \n",
+      type: string
+    },
+    {
+      name: address,
+      required: true,
+      description: "Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: country,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: postal_code,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: city,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: house_number,
+      required: true,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: apartment_number,
+      required: false,
+      description: "Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: is_mailing_address_different,
+      required: false,
+      type: boolean
+    },
+    {
+      name: mailing_address,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 65535 characters.",
+      type: string
+    },
+    {
+      name: mailing_country,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_postal_code,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_city,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_house_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: mailing_apartment_number,
+      required: false,
+      description: "Requered if is_mailing_address_different is true.\n
+        Minimum 4 characters and maximum 255 characters.",
+      type: string
+    },
+    {
+      name: password,
+      required: true,
+      description: "Minimum 6 characters",
+      type: string
+    },
+    {
+      name: password_confirmation,
+      required: true,
+      description: "Minimum 6 characters and must match the password.",
+      type: string
+    }
+  ]
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 201,
+        "success": true,
+        "payload": {
+          "id": 1,
+          "role": "user",
+          "language": "en",
+          "first_name": "praesentium est excepturi",
+          "last_name": "in neque molestiae",
+          "email": "lera.donnelly@example.org",
+          "email_verified_at": "2023-12-12T17:03:50.000000Z",
+          "phone": "949-672-6726",
+          "average_salary": "12178.59",
+          "position": "back-end",
+          "address": "27317 Toy Summit",
+          "country": "Solomon Islands",
+          "postal_code": "71175",
+          "city": "South Mustafachester",
+          "house_number": "783",
+          "apartment_number": "78470",
+          "is_mailing_address_different": false,
+          "mailing_address": null,
+          "mailing_country": null,
+          "mailing_postal_code": null,
+          "mailing_city": null,
+          "mailing_house_number": null,
+          "mailing_apartment_number": null,
+          "is_active": true,
+          "created_at": "2023-12-12T17:03:50.000000Z",
+          "updated_at": "2023-12-12T17:03:50.000000Z",
+          "deleted_at": null
+        }
+      }'
+# Auth Reset Creating
+- httpMethods: ["POST"]
+  uri: api/v1/auth/reset
+  metadata:
+    authenticated: false
+  urlParameters: [
+    {
+      name: email,
+      required: true,
+      type: string
+    },
+  ]
+  headers:
+    Bearer Token: String
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "message": "Token has been created."
+      }'
+# Auth Reset Confirming
+- httpMethods: ["POST"]
+  uri: api/v1/auth/reset/{token}
+  metadata:
+    authenticated: false
+  urlParameters: [
+    {
+      name: password,
+      required: true,
+      description: "Minimum 6 characters",
+      type: string
+    },
+    {
+      name: password_confirmation,
+      required: true,
+      description: "Minimum 6 characters and must match the password.",
+      type: string
+    }
+  ]
+  responses:
+  - status: 200
+    content: '{
+        "status_code": 200,
+        "success": true,
+        "message": "Password has been reset."
+      }'
