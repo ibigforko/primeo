@@ -20,7 +20,6 @@ yarn-error.log
 /public/vendor/scribe
 /resources/views/scribe
 /storage/db
-artisan
 .phpunit.cache/*
 phpunit.xml.bak
 docker-compose.override.yml
