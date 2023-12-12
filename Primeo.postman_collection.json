@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "a3300759-76a3-41df-9468-8e0193368666",
+		"name": "Primeo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31757086"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{Password}}",
+						"username": "{{Username}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost/api/v1/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearer}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost/api/v1/auth/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/v1/auth/register?language=en&first_name=praesentium est excepturi&last_name=in neque molestiae&email=lera.donnelly@example.org&phone=949-672-6726&average_salary=12178.59&position=back-end&address=27317 Toy Summit&country=Solomon Islands&postal_code=71175&city=South Mustafachester&house_number=783&apartment_number=78470&password=secret&password_confirmation=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "first_name",
+							"value": "praesentium est excepturi"
+						},
+						{
+							"key": "last_name",
+							"value": "in neque molestiae"
+						},
+						{
+							"key": "email",
+							"value": "lera.donnelly@example.org"
+						},
+						{
+							"key": "phone",
+							"value": "949-672-6726"
+						},
+						{
+							"key": "average_salary",
+							"value": "12178.59"
+						},
+						{
+							"key": "position",
+							"value": "back-end"
+						},
+						{
+							"key": "address",
+							"value": "27317 Toy Summit"
+						},
+						{
+							"key": "country",
+							"value": "Solomon Islands"
+						},
+						{
+							"key": "postal_code",
+							"value": "71175"
+						},
+						{
+							"key": "city",
+							"value": "South Mustafachester"
+						},
+						{
+							"key": "house_number",
+							"value": "783"
+						},
+						{
+							"key": "apartment_number",
+							"value": "78470"
+						},
+						{
+							"key": "password",
+							"value": "secret"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/auth/reset?email=test@test.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"reset"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@test.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset/{token}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/auth/reset/e3059fea4f27f65870c6ddf1f09fd47e71f43a2a?password=secret&password_confirmation=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"reset",
+						"e3059fea4f27f65870c6ddf1f09fd47e71f43a2a"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "secret"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/users?page[number]=1&page[size]=1&filter[email]=tes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page[number]",
+							"value": "1"
+						},
+						{
+							"key": "page[size]",
+							"value": "1"
+						},
+						{
+							"key": "filter[email]",
+							"value": "tes"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/{user_id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearer}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost/api/v1/users/1"
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearer}}"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/users?language=en&first_name=praesentium est excepturi&last_name=in neque molestiae&email=lera.donnelly@example.org2&phone=949-672-6726&average_salary=12178.59&position=back-end&address=27317 Toy Summit&country=Solomon Islands&postal_code=71175&city=South Mustafachester&house_number=783&apartment_number=78470&password=secret&password_confirmation=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "first_name",
+							"value": "praesentium est excepturi"
+						},
+						{
+							"key": "last_name",
+							"value": "in neque molestiae"
+						},
+						{
+							"key": "email",
+							"value": "lera.donnelly@example.org2"
+						},
+						{
+							"key": "phone",
+							"value": "949-672-6726"
+						},
+						{
+							"key": "average_salary",
+							"value": "12178.59"
+						},
+						{
+							"key": "position",
+							"value": "back-end"
+						},
+						{
+							"key": "address",
+							"value": "27317 Toy Summit"
+						},
+						{
+							"key": "country",
+							"value": "Solomon Islands"
+						},
+						{
+							"key": "postal_code",
+							"value": "71175"
+						},
+						{
+							"key": "city",
+							"value": "South Mustafachester"
+						},
+						{
+							"key": "house_number",
+							"value": "783"
+						},
+						{
+							"key": "apartment_number",
+							"value": "78470"
+						},
+						{
+							"key": "password",
+							"value": "secret"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/{user_id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearer}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/v1/users/3?language=en&first_name=praesentium est excepturi&last_name=in neque molestiae&email=lera.donnelly@example.org3&phone=949-672-6726&average_salary=12178.59&position=back-end&address=27317 Toy Summit&country=Solomon Islands&postal_code=71175&city=South Mustafachester&house_number=783&apartment_number=78470&password=secret&password_confirmation=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"3"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "first_name",
+							"value": "praesentium est excepturi"
+						},
+						{
+							"key": "last_name",
+							"value": "in neque molestiae"
+						},
+						{
+							"key": "email",
+							"value": "lera.donnelly@example.org3"
+						},
+						{
+							"key": "phone",
+							"value": "949-672-6726"
+						},
+						{
+							"key": "average_salary",
+							"value": "12178.59"
+						},
+						{
+							"key": "position",
+							"value": "back-end"
+						},
+						{
+							"key": "address",
+							"value": "27317 Toy Summit"
+						},
+						{
+							"key": "country",
+							"value": "Solomon Islands"
+						},
+						{
+							"key": "postal_code",
+							"value": "71175"
+						},
+						{
+							"key": "city",
+							"value": "South Mustafachester"
+						},
+						{
+							"key": "house_number",
+							"value": "783"
+						},
+						{
+							"key": "apartment_number",
+							"value": "78470"
+						},
+						{
+							"key": "password",
+							"value": "secret"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/{user_id,user_id...}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearer}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost/api/v1/users/"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Bearer",
+			"value": "7|MKekdqQ5Gw8i3VoDooVUvCrKekoo0KD4ZhngThPI",
+			"type": "string"
+		},
+		{
+			"key": "Username",
+			"value": "test@test.com",
+			"type": "string"
+		},
+		{
+			"key": "Password",
+			"value": "secret",
+			"type": "string"
+		}
+	]
+}
