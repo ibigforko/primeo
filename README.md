@@ -8,7 +8,6 @@ This section is optional if there isn't any special dependencies. Else a bulletl
 
 ## Installation
 A quick guide on how to install project. 
-For example:
 
 1. Clone Project
 2. cd primeo
