@@ -7,7 +7,7 @@ This section is optional if there isn't any special dependencies. Else a bulletl
 - PHP 8.1 | 8.2
 
 ## Installation
-A quick guide on how to install MIB project. 
+A quick guide on how to install project. 
 For example:
 
 1. Clone Project
